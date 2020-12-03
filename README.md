@@ -1,1 +1,3 @@
-# BigData_Pair_Trading
+# Big Data Project Pair Trading Analysis
+
+
