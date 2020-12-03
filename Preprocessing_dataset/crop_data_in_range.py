@@ -1,5 +1,5 @@
 import os
-from pyspark import SparkContext, SparkConf
+from pyspark import SparkConf
 from pyspark.sql import *
 
 spark = SparkSession.builder \

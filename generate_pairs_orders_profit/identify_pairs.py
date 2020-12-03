@@ -24,6 +24,9 @@ INSTRUMENT = 9
 COMMA_DELIMITER = re.compile(''',(?=(?:[^"]*"[^"]*")*[^"]*$)''')
 
 def is_active_equity(equity: str):
+
+    '''Ensure the equities chosen are'''
+
     cols = COMMA_DELIMITER.split(equity)
     return cols[STATUS].strip() == 'Active' and cols[INDUSTRY].strip() != '' and cols[INSTRUMENT].strip() == 'Equity'
 
@@ -38,7 +41,7 @@ def by_sector(sector_ticker: str, sector: str):
 def check_if_NSE_data_exists(sector_ticker: str):
     cols = COMMA_DELIMITER.split(sector_ticker)
     symbol = cols[0]
-    if not os.path.isfile('./Companies/' + symbol + '/' + symbol + 'NSE.csv'):
+    if not os.path.isfile('../Storage/Companies_in_range/' + symbol + 'NSE.csv'):
         return False
     return True
 
@@ -71,11 +74,9 @@ if __name__ == "__main__":
             for j in range(i+1, len(companies)):
                 symbol2 = companies[j]
 
-                symbol1_df = sqlContext.read.csv('./Companies/' + symbol1 + '/' + symbol1 + 'NSE.csv',
-                                         inferSchema=True, header=True)
+                symbol1_df = sqlContext.read.csv('../Storage/Companies_in_range/' + symbol1 + 'NSE.csv', inferSchema=True, header=True)
 
-                symbol2_df = sqlContext.read.csv('./Companies/' + symbol2 + '/' + symbol2 + 'NSE.csv',
-                                         inferSchema=True, header=True)
+                symbol2_df = sqlContext.read.csv('../Storage/Companies_in_range/' + symbol2 + 'NSE.csv', inferSchema=True, header=True)
 
                 # eliminate all data before START_DATE
                 symbol1_df = symbol1_df.filter(symbol1_df.Date >= START_DATE)
@@ -110,7 +111,7 @@ if __name__ == "__main__":
                 print(symbol1_df)
                 print(symbol2_df)
 
-                # join both symbols into a signle pair_df
+                # join both symbols into a single pair_df
 
                 master_pair_df = symbol1_df.join(symbol2_df)
                 spread = master_pair_df[symbol1 + '_Close'].mean() / master_pair_df[symbol2 + '_Close'].mean()
@@ -145,8 +146,7 @@ if __name__ == "__main__":
                             print(f'MATCH FOUND: CORR - {corr_value}, COINT - {pvalue}\n')
                             pair_df["Spread"] = pair_df[symbol1 + "_Close"] - pair_df[symbol2 + "_Close"]
                             pair_df["zscore"] = zscore(pair_df["Spread"])
-                            pair_df.to_csv('./pairs_data/' + symbol1 + '-' + symbol2 + '-' + str(count) + '.csv',
-                                           index=False)
+                            pair_df.to_csv('../Storage/pairs_data/' + symbol1 + '-' + symbol2 + '-' + str(count) + '.csv', index=False)
                             count += 1
                         else:
                             print(f'*** IGNORING PAIR {symbol1} - {symbol2}, Spread TOO WIDE {spread_mean}\n')
