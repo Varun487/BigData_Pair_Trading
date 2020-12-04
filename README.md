@@ -10,9 +10,6 @@
 2. Hritik Shanbhag - PES2201800082
 3. Shashwath S Kumar - PES2201800623
 
-
-###### NOTE - Unless explicitly mentioned, all files use PYSPARK to process data
-
 ## To replicate this repo on your computer 
 
 1. Download the storage folder shared in google drive.
@@ -34,9 +31,7 @@
 
 Contains 2 scripts
 1. `list_of_nse_companies.py` - To get names and tickers all stocks floating in the stock market as of 3rd September 2020
-    - Does __NOT__ use Pyspark
 2. `stock_candle_data_and_volume.py` - To get historical candle stick data of the stock tickers collected from years 2000 - 2020
-    - Does __NOT__ use Pyspark
     
 ## Preprocessing
 
@@ -45,20 +40,24 @@ Contains 2 scripts
 ###### Pyspark is used to handle missing data and cropping the dataset
 
 1. Extract csvs - The csvs present within the folders are brought out.
-    - Does __NOT__ use Pyspark
 2. Handling Missing Data - Dropping the rows of the datasets which are missing data we can afford to do this due to a large amount of data and interpolation may lead to inaccurate data due to the volatility of some stocks.
+    - Uses __PYSPARK__
 3. Deleting datasets which have < 3 years worth of data.
+   - Uses __PYSPARK__
 4. Deleting the parts of the datasets with > 3 years of data (taking only data in range of years 2017-2019) - as a correlation needs to be within a fixed time period and we cannot let a strong correlation in the past affect the predictions made by the model when there is no significant correlation currently.
-
+    - Uses __PYSPARK__
 
 ## Generate Orders and Calculate Profits
 
 ###### Identify pairs + Generate orders + Calculate profits on the pairs using PYSPARK
 
 1. Identify pairs - Pairs are identified based on their sectors and cointegration, correlation thresholds.
+    - Uses __PYSPARK__
 2. Generate orders - Orders (long, short, flat, get out of position) are assigned based on price and zscore.
+    - Uses __PYSPARK__
 3. Calculate profits - Capital and Risk are decided for opening and closing a trade. Orders are placed on the shares. Profits are then calculated based on the orders.
-
+    - Uses __PYSPARK__
+    
 ## Visualizations
 
 #### Graphs are plotted for visualization of spread, orders, profits.
