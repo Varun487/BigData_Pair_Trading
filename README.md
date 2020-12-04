@@ -4,11 +4,21 @@
 1. Project Code
 2. Project Final Report
 
-## Project members
+## Project members and work assigned
 ###### All members are from Semester 5 Section E Pes University EC Campus
 1. Varun Seshu - PES2201800074
+   - identify_pairs.py
+   - generate_orders.py
+   - calculate_profit.py
 2. Hritik Shanbhag - PES2201800082
+   - list_of_nse_companies.py
+   - stock_candle_data_and_volume.py
+   - handling_missing_data.py
 3. Shashwath S Kumar - PES2201800623
+   - extract_csvs.py
+   - crop_data_in_range.py
+   - Visualizations.ipynb
+    
 
 ## To replicate this repo on your computer 
 
