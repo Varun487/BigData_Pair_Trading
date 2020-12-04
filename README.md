@@ -14,7 +14,7 @@
 
 1. Download the storage folder shared to you in google drive.
 2. The Storage2 folder is a representative sample of the complete data present.
-3. Create a DA Project folder
+3. Create a BD Project folder
 3. Copy the storage folder as is to the newly created project folder
 3. cd to that folder and run `git init`, this initializes the git repository
 4. run `git remote add origin "https://github.com/Varun487/BigData_Pair_Trading"`
