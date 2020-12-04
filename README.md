@@ -40,9 +40,19 @@ Contains 2 scripts
 
 
 1. Extract csvs - The csvs present within the folders are brought out.
+
+###### Pyspark is used to handle missing data and cropping the dataset
 2. Handling Missing Data - Dropping the rows of the datasets which are missing data we can afford to do this due to a large amount of data and interpolation may lead to inaccurate data due to the volatility of some stocks.
 3. Deleting datasets which have < 3 years worth of data.
 4. Deleting the parts of the datasets with > 3 years of data (taking only data in range of years 2017-2019) - as a correlation needs to be within a fixed time period and we cannot let a strong correlation in the past affect the predictions made by the model when there is no significant correlation currently.
 
 
+## Generate Orders and Calculate Profits
 
+###### Identify pairs + Generate orders + Calculate profits using Spark
+
+1. Identify pairs - Pairs are identified based on their sectors and cointegration, correlation thresholds.
+2. Generate orders - Orders (long, short, flat, get out of position) are assigned based on price and zscore.
+3. Calculate profits - Capital and Risk are decided for opening and closing a trade. Orders are placed on the shares. Profits are then calculated based on the orders.
+
+### Graphs are plotted for visualization of spread, orders, profits.
