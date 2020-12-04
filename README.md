@@ -55,4 +55,4 @@ Contains 2 scripts
 2. Generate orders - Orders (long, short, flat, get out of position) are assigned based on price and zscore.
 3. Calculate profits - Capital and Risk are decided for opening and closing a trade. Orders are placed on the shares. Profits are then calculated based on the orders.
 
-### Graphs are plotted for visualization of spread, orders, profits.
+#### Graphs are plotted for visualization of spread, orders, profits.
